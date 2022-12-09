@@ -1,0 +1,3 @@
+2022-12-08 10:19:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TB_MOVIE_LUKESKYWALKER" not found (this database is empty); SQL statement:
+select movielukes0_.id as id1_0_, movielukes0_.col_director as col_dire2_0_, movielukes0_.col_episode_id as col_epis3_0_, movielukes0_.col_release_date as col_rele4_0_, movielukes0_.col_title as col_titl5_0_ from tb_movie_lukeskywalker movielukes0_ [42104-212]
