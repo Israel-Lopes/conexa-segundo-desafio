@@ -11,7 +11,7 @@ import java.util.List;
 public class MockFactory {
     public static MockFactory getMockFactory() { return new MockFactory(); }
 
-    public Collection<MovieLukeSkyWalker> getMovieLukeSkyWalkerCollection() {
+    public  Collection<MovieLukeSkyWalker> getMovieLukeSkyWalkerCollection() {
         Collection<MovieLukeSkyWalker> collection = new ArrayList<>();
         collection.add(getMovieLukeSkyWalker());
         return collection;
@@ -21,7 +21,7 @@ public class MockFactory {
         list.add(getMovieLukeSkyWalker());
         return list;
     }
-    public MovieLukeSkyWalker getMovieLukeSkyWalker() {
+    public static MovieLukeSkyWalker getMovieLukeSkyWalker() {
         return MovieLukeSkyWalker.builder()
                 .id(Long.min(10, 50))
                 .title("title-teste")
@@ -35,7 +35,7 @@ public class MockFactory {
         list.add(getMovieLukeSkyWalkerEntity());
         return list;
     }
-    public MovieLukeSkyWalkerEntity getMovieLukeSkyWalkerEntity() {
+    public static MovieLukeSkyWalkerEntity getMovieLukeSkyWalkerEntity() {
         return MovieLukeSkyWalkerEntity.builder()
                 .id(Long.min(10, 50))
                 .title("title-teste")

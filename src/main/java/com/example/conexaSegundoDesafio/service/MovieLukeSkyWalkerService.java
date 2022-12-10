@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,17 +22,15 @@ public class MovieLukeSkyWalkerService {
 
     public List<MovieLukeSkyWalkerEntity> getMoviesSkyWalker() throws Exception {
         log.info("Iniciando busca de filmes do Skywalker na integracao");
-        ArrayList<MovieLukeSkyWalker> integration = (ArrayList<MovieLukeSkyWalker>) this.integration.getMoviesSkyWalker();
+        List<MovieLukeSkyWalker> integration = this.integration.getMoviesSkyWalker();
 
-        for (int i = 0; i < integration.size(); i++) {
-            MovieLukeSkyWalkerEntity entity = repository.findByEpisodeId(integration.get(i).getEpisodeId());
-            try {
-                entity.getEpisodeId().equals(NullPointerException.class);
-            } catch (NullPointerException e) {
-                repository.save(MovieLukeSkyWalkerMapper.marshall(integration.get(i)));
-                log.info("Item salvo com sucesso! {}", MovieLukeSkyWalkerMapper.marshall(integration.get(i)));
+        integration.forEach(model -> {
+            MovieLukeSkyWalkerEntity entity = repository.findByEpisodeId(model.getEpisodeId());
+            if (entity == null) {
+                repository.save(MovieLukeSkyWalkerMapper.marshall(model));
+                log.info("Item salvo com sucesso! {}", model);
             }
-        }
+        });
 
         return repository.findAll();
     }
