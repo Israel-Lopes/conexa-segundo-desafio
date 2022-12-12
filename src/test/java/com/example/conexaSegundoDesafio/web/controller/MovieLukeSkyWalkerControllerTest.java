@@ -1,8 +1,9 @@
-package com.example.conexaSegundoDesafio.controller;
+package com.example.conexaSegundoDesafio.web.controller;
 
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
 import com.example.conexaSegundoDesafio.mock.MockFactory;
+import com.example.conexaSegundoDesafio.service.model.MovieLukeSkyWalker;
 import com.example.conexaSegundoDesafio.service.MovieLukeSkyWalkerService;
+import com.example.conexaSegundoDesafio.web.controller.MovieLukeSkyWalkerController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -25,9 +26,9 @@ public class MovieLukeSkyWalkerControllerTest {
     @Test
     void getSky_shouldListMovieSky() throws Exception {
         when(service.getMoviesSkyWalker())
-                .thenReturn(mockFactory.getMockFactory().getMovieLukeSkyWalkerEntityList());
+                .thenReturn(mockFactory.getMockFactory().getMovieLukeSkyWalkerList());
         when(controller.getSky())
-                .thenReturn(mockFactory.getMovieLukeSkyWalkerCollection());
+                .thenReturn(mockFactory.getMovieLukeSkyWalkerList());
 
         service.getMoviesSkyWalker();
 
@@ -37,15 +38,15 @@ public class MovieLukeSkyWalkerControllerTest {
 
     @Test
     void createMovieLukeSkyWalker_shouldCreateMovie() throws Exception {
-        when(service.createMovieLukeSkyWalker(mockFactory.getMockFactory().getMovieLukeSkyWalkerEntity()))
-                .thenReturn(mockFactory.getMockFactory().getMovieLukeSkyWalkerEntity());
+        when(service.createMovieLukeSkyWalker(mockFactory.getMockFactory().getMovieLukeSkyWalker()))
+                .thenReturn(mockFactory.getMockFactory().getMovieLukeSkyWalker());
 
-        MovieLukeSkyWalkerEntity entity = service.createMovieLukeSkyWalker(mockFactory.getMockFactory()
-                .getMovieLukeSkyWalkerEntity());
+        MovieLukeSkyWalker model = service.createMovieLukeSkyWalker(mockFactory.getMockFactory()
+                .getMovieLukeSkyWalker());
 
         verify(service, times(1))
-                .createMovieLukeSkyWalker(mockFactory.getMovieLukeSkyWalkerEntity());
-        assertThat(entity).isNotNull();
+                .createMovieLukeSkyWalker(mockFactory.getMovieLukeSkyWalker());
+        assertThat(model).isNotNull();
     }
 
 }

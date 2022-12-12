@@ -1,23 +1,17 @@
 package com.example.conexaSegundoDesafio.service;
 
-import com.example.conexaSegundoDesafio.controller.MovieLukeSkyWalkerController;
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
 import com.example.conexaSegundoDesafio.integration.MovieLukeSkyWalkerIntegration;
-import com.example.conexaSegundoDesafio.mapper.MovieLukeSkyWalkerMapper;
+import com.example.conexaSegundoDesafio.web.controller.mapper.MovieLukeSkyWalkerMapper;
 import com.example.conexaSegundoDesafio.mock.MockFactory;
-import com.example.conexaSegundoDesafio.model.MovieLukeSkyWalker;
+import com.example.conexaSegundoDesafio.service.model.MovieLukeSkyWalker;
 import com.example.conexaSegundoDesafio.repository.MovieLukeSkyWalkerRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -27,7 +21,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class MovieLukeSkyWalkerServiceTest {
-
+    private MockFactory mockFactory = new MockFactory();
     @Mock
     private MovieLukeSkyWalkerIntegration integration;
 
@@ -39,19 +33,12 @@ public class MovieLukeSkyWalkerServiceTest {
 
     @Test
     public void testGetMoviesSkyWalker() throws Exception {
-        List<MovieLukeSkyWalker> models = new ArrayList<>();
-        models.add(MovieLukeSkyWalker.builder()
-                .id(1L)
-                .title("The Empire Strikes Back")
-                .episodeId(5)
-                .director("Irvin Kershner")
-                .releaseDate(LocalDate.of(1980, 5, 17))
-                .build());
+        List<MovieLukeSkyWalker> models = mockFactory.getMovieLukeSkyWalkerList();
 
         when(integration.getMoviesSkyWalker()).thenReturn(models);
         when(repository.findAll()).thenReturn((List<MovieLukeSkyWalkerEntity>) MovieLukeSkyWalkerMapper.marshall(models));
 
-        List<MovieLukeSkyWalkerEntity> entities = service.getMoviesSkyWalker();
+        List<MovieLukeSkyWalker> entities = service.getMoviesSkyWalker();
         assertNotNull(entities);
         assertEquals(1, entities.size());
 
@@ -61,20 +48,15 @@ public class MovieLukeSkyWalkerServiceTest {
 
     @Test
     public void testCreateMovieLukeSkyWalker() throws Exception {
-        MovieLukeSkyWalkerEntity entity = MovieLukeSkyWalkerEntity.builder()
-                .id(1L)
-                .title("The Empire Strikes Back")
-                .episodeId(5)
-                .director("Irvin Kershner")
-                .releaseDate(LocalDate.of(1980, 5, 17))
-                .build();
+        MovieLukeSkyWalker model = mockFactory.getMovieLukeSkyWalker();
 
-        when(repository.save(entity)).thenReturn(entity);
+        when(repository.save(MovieLukeSkyWalkerMapper.marshall(model)))
+                .thenReturn(MovieLukeSkyWalkerMapper.marshall(model));
 
-        MovieLukeSkyWalkerEntity saved = service.createMovieLukeSkyWalker(entity);
+        MovieLukeSkyWalker saved = service.createMovieLukeSkyWalker(model);
         assertNotNull(saved);
-        assertEquals(1L, saved.getId().longValue());
 
-        verify(repository, times(1)).save(entity);
+        verify(repository, times(1))
+                .save(MovieLukeSkyWalkerMapper.marshall(model));
     }
 }

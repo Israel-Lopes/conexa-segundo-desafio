@@ -1,15 +1,14 @@
-package com.example.conexaSegundoDesafio.mapper;
+package com.example.conexaSegundoDesafio.web.controller.mapper;
 
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
 import com.example.conexaSegundoDesafio.mock.MockFactory;
-import com.example.conexaSegundoDesafio.model.MovieLukeSkyWalker;
+import com.example.conexaSegundoDesafio.service.model.MovieLukeSkyWalker;
+import com.example.conexaSegundoDesafio.web.controller.mapper.MovieLukeSkyWalkerMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 

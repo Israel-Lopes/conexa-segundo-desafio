@@ -1,5 +1,6 @@
-package com.example.conexaSegundoDesafio.entity;
+package com.example.conexaSegundoDesafio.persistence.entity;
 
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Method;
 

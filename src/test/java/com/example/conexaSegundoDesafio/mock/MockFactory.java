@@ -1,7 +1,7 @@
 package com.example.conexaSegundoDesafio.mock;
 
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
-import com.example.conexaSegundoDesafio.model.MovieLukeSkyWalker;
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
+import com.example.conexaSegundoDesafio.service.model.MovieLukeSkyWalker;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class MockFactory {
     }
     public static MovieLukeSkyWalker getMovieLukeSkyWalker() {
         return MovieLukeSkyWalker.builder()
-                .id(Long.min(10, 50))
+                .id(1L)
                 .title("title-teste")
-                .episodeId(Integer.min(10, 50))
+                .episodeId(1)
                 .director("director-teste")
                 .releaseDate(LocalDate.now())
                 .build();
@@ -37,9 +37,9 @@ public class MockFactory {
     }
     public static MovieLukeSkyWalkerEntity getMovieLukeSkyWalkerEntity() {
         return MovieLukeSkyWalkerEntity.builder()
-                .id(Long.min(10, 50))
+                .id(1L)
                 .title("title-teste")
-                .episodeId(Integer.min(10, 50))
+                .episodeId(1)
                 .director("director-teste")
                 .releaseDate(LocalDate.now())
                 .build();

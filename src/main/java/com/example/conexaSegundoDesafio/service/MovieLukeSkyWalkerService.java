@@ -1,9 +1,9 @@
 package com.example.conexaSegundoDesafio.service;
 
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
 import com.example.conexaSegundoDesafio.integration.MovieLukeSkyWalkerIntegration;
-import com.example.conexaSegundoDesafio.mapper.MovieLukeSkyWalkerMapper;
-import com.example.conexaSegundoDesafio.model.MovieLukeSkyWalker;
+import com.example.conexaSegundoDesafio.web.controller.mapper.MovieLukeSkyWalkerMapper;
+import com.example.conexaSegundoDesafio.service.model.MovieLukeSkyWalker;
 import com.example.conexaSegundoDesafio.repository.MovieLukeSkyWalkerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class MovieLukeSkyWalkerService {
     @Autowired(required=true)
     private MovieLukeSkyWalkerRepository repository;
 
-    public List<MovieLukeSkyWalkerEntity> getMoviesSkyWalker() throws Exception {
+    public List<MovieLukeSkyWalker> getMoviesSkyWalker() throws Exception {
         log.info("Iniciando busca de filmes do Skywalker na integracao");
         List<MovieLukeSkyWalker> integration = this.integration.getMoviesSkyWalker();
 
@@ -32,11 +32,12 @@ public class MovieLukeSkyWalkerService {
             }
         });
 
-        return repository.findAll();
+        return (List)MovieLukeSkyWalkerMapper.unmarshall(repository.findAll());
     }
 
-    public MovieLukeSkyWalkerEntity createMovieLukeSkyWalker(MovieLukeSkyWalkerEntity entity) throws Exception {
-        MovieLukeSkyWalkerEntity saved = repository.save(entity);
+    public MovieLukeSkyWalker createMovieLukeSkyWalker(MovieLukeSkyWalker model) throws Exception {
+        MovieLukeSkyWalkerEntity db = repository.save(MovieLukeSkyWalkerMapper.marshall(model));
+        MovieLukeSkyWalker saved = MovieLukeSkyWalkerMapper.unmarshall(db);
         log.info("Filme salvo com sucesso: {}", saved);
         return saved;
     }

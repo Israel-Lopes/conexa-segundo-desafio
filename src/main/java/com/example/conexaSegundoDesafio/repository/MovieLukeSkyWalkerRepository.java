@@ -1,6 +1,6 @@
 package com.example.conexaSegundoDesafio.repository;
 
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

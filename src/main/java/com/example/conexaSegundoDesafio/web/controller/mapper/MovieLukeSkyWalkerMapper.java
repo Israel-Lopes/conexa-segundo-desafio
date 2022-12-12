@@ -1,7 +1,7 @@
-package com.example.conexaSegundoDesafio.mapper;
+package com.example.conexaSegundoDesafio.web.controller.mapper;
 
-import com.example.conexaSegundoDesafio.entity.MovieLukeSkyWalkerEntity;
-import com.example.conexaSegundoDesafio.model.MovieLukeSkyWalker;
+import com.example.conexaSegundoDesafio.persistence.entity.MovieLukeSkyWalkerEntity;
+import com.example.conexaSegundoDesafio.service.model.MovieLukeSkyWalker;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
